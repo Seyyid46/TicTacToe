@@ -5,7 +5,7 @@ This Programm is a TicTacToe Game on your Terminal
  */
 
  
- public class ttt {
+ public class Main {
      static ArrayList<Integer> playerPositon = new ArrayList<>();
      static ArrayList<Integer> cpuPositon = new ArrayList<>();
     public static void main(String[] args) {
@@ -41,6 +41,15 @@ This Programm is a TicTacToe Game on your Terminal
         while(playerPositon.contains(cpuPos)||cpuPositon.contains(cpuPos)){
             cpuPos = r.nextInt(9) + 1;
         }
+
+        //Set Input to the Board
+        setPos(gameboard, cpuPos, "cpu");
+        //Print new Board with the Input
+        printGameBoard(gameboard);
+
+        //check if cpu or player Win
+        String res = checkChickenDinner();
+        System.out.println(res);
     }
 
     /*
@@ -98,6 +107,43 @@ This Programm is a TicTacToe Game on your Terminal
                  gameboard [4][4] = symbol;
                  break;
          }
+     }
+
+     //Method to check if player or cpu won.
+     public static String checkChickenDinner(){
+         //create win possibilities
+         List topRow = Arrays.asList(1,2,3);
+         List midRow = Arrays.asList(4,5,6);
+         List botRow = Arrays.asList(7,8,9);
+         List lefCol = Arrays.asList(1,4,7);
+         List midCol = Arrays.asList(2,5,8);
+         List rightcol= Arrays.asList(3,6,9);
+         List leftDia = Arrays.asList(1,5,9);
+         List rightDia = Arrays.asList(3,5,7);
+
+         //add win possibilities
+         List<List> winning = new ArrayList<List>();
+         winning.add(topRow);
+         winning.add(midRow);
+         winning.add(botRow);
+         winning.add(lefCol);
+         winning.add(midCol);
+         winning.add(rightcol);
+         winning.add(leftDia);
+         winning.add(rightDia);
+
+         //check if player or cpu get one the possibilities
+         for(List l: winning){
+             if(playerPositon.containsAll(l)){
+                 return "Winner Winner Chicken Dinner!!";
+             }else if (cpuPositon.containsAll(l)){
+                 return "Looser Looser Bad User";
+             }else if (playerPositon.size() + cpuPositon.size() == 9) {
+                 return "Men Im Dead! It's a Suddendeath";
+             }
+         }
+
+         return "";
      }
 
 }
