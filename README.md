@@ -16,7 +16,7 @@ How to Play
 	•	Compile the Java code and run the resulting class file to start the game.
 	2.	Game Instructions:
 	•	The game board is represented as a 3x3 grid with positions numbered 1 through 9 as follows
-  •	Players take turns to input the number corresponding to the position where they want to place their mark (X or O).
+  	•	Players take turns to input the number corresponding to the position where they want to place their mark (X or O).
   	3.	Winning the Game:
 	•	The first player to align three of their marks in a row (horizontally, vertically, or diagonally) wins the game.
 	•	If all 9 positions are filled and no player has aligned three marks, the game ends in a draw.
@@ -31,11 +31,9 @@ Compilation and Execution
 
 	1.	Compile the code:
 	•	Open your terminal and navigate to the directory containing the TicTacToe.java file.
-	•	Run the following command to compile the code:
- javac TicTacToe.java
+	•	Run the following command to compile the code: javac TicTacToe.java
  	2.	Run the game:
-	•	After compilation, execute the program using the following command:
- java TicTacToe
+	•	After compilation, execute the program using the following command:java TicTacToe
  	3.	Follow the on-screen instructions:
 	•	The game will prompt player to enter his move.
  
