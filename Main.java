@@ -10,6 +10,8 @@ This Programm is a TicTacToe Game on your Terminal
      static ArrayList<Integer> cpuPositon = new ArrayList<>();
     public static void main(String[] args) {
 
+        boolean game_finished = false;
+
         //generating GameBoard in 2D Array
         char [][] gameboard = {{' ', '|', ' ', '|', ' '},
                 {'-', '+', '-', '+', '-'},
@@ -20,36 +22,41 @@ This Programm is a TicTacToe Game on your Terminal
 
         printGameBoard(gameboard);//first Print
 
-        //generate Input
-        Scanner scan = new Scanner(System.in);
-        System.out.println("Please enter your Position (1-9)");
+        while (! game_finished) {
+            //generate Input
+            Scanner scan = new Scanner(System.in);
+            System.out.println("Please enter your Position (1-9)");
 
-        //get Player Position (Input)
-        int playerPos = scan.nextInt();
-        //check Position
-        while(playerPositon.contains(playerPos)||cpuPositon.contains(playerPositon)){
-            System.out.println("Position already taken! Choose another Position");
-            playerPos = scan.nextInt();
+            //get Player Position (Input)
+            int playerPos = scan.nextInt();
+            //check Position
+            while (playerPositon.contains(playerPos) || cpuPositon.contains(playerPositon)) {
+                System.out.println("Position already taken! Choose another Position");
+                playerPos = scan.nextInt();
+            }
+            System.out.println(playerPos); //print Input
+            setPos(gameboard, playerPos, "player");
+
+            //get Cpu Position(Random)
+            Random r = new Random();
+            int cpuPos = r.nextInt(9) + 1;
+            //checkPosition
+            while (playerPositon.contains(cpuPos) || cpuPositon.contains(cpuPos)) {
+                cpuPos = r.nextInt(9) + 1;
+            }
+
+            //Set Input to the Board
+            setPos(gameboard, cpuPos, "cpu");
+            //Print new Board with the Input
+            printGameBoard(gameboard);
+
+            //check if cpu or player Win
+            String res = checkChickenDinner();
+            System.out.println(res);
+
+            if(! res.isEmpty())
+                game_finished = true;
         }
-        System.out.println(playerPos); //print Input
-        setPos(gameboard, playerPos, "player");
-
-        //get Cpu Position(Random)
-        Random r = new Random();
-        int cpuPos = r.nextInt(9) + 1;
-        //checkPosition
-        while(playerPositon.contains(cpuPos)||cpuPositon.contains(cpuPos)){
-            cpuPos = r.nextInt(9) + 1;
-        }
-
-        //Set Input to the Board
-        setPos(gameboard, cpuPos, "cpu");
-        //Print new Board with the Input
-        printGameBoard(gameboard);
-
-        //check if cpu or player Win
-        String res = checkChickenDinner();
-        System.out.println(res);
     }
 
     /*
